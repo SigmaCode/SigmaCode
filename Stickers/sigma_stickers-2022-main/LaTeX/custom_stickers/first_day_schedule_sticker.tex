@@ -1,0 +1,62 @@
+\documentclass[10pt,letterpaper, landscape]{article}
+\usepackage{../source/sticker}
+
+\begin{document}
+\newtcolorbox{sticker}
+{
+  fit,
+  width=2.75in,
+  height=4.25in,
+  blank,
+  %borderline={0.5pt}{0pt}{red!20!white},
+  nobeforeafter,
+  right skip=0.0in,
+  left skip=0.0in,
+  boxsep=0.23in,
+  fit fontsize macros
+}
+
+\renewcommand{\baselinestretch}{0.8} 
+
+\def\stickercontent{\begin{sticker}
+\stickertitle{Sunday Schedule}
+\large
+\begin{scheduletable}
+\scheduleentry{8:30}{AM}{Breakfast}
+\scheduleentry{10:00}{AM}{Registration Preparation}
+\scheduleentry{12:00}{PM}{Lunch}
+\scheduleentry{1:00}{PM}{Check-in until 2:30}
+\scheduleentry{1:30}{PM}{Moving into cabins}
+\scheduleentry{3:15}{PM}{Gather your team for group photo}
+\scheduleentry{3:30}{PM}{Group Photo}
+\scheduleentry{4:00}{PM}{SigmaQuest}
+\scheduleentry{6:00}{PM}{Dinner}
+\scheduleentry{6:30}{PM}{Silver Lake Orientation -- during which we prepare dining hall for Opening Ceremony}
+\scheduleentry{7:00}{PM}{Opening Ceremony}
+\scheduleentry{9:00}{PM}{Team time.}
+\scheduleentry{10:30}{PM}{Lights Out!}
+\scheduleentry{11:00}{PM}{Staff Meeting}
+\end{scheduletable}
+\vspace{-1em}
+\end{sticker}
+}
+
+%Generate all 8 stickers on the page
+
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+\verticalshiftfornextsticker
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+
+\end{document}

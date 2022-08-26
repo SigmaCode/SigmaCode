@@ -1,0 +1,62 @@
+\documentclass[10pt,letterpaper, landscape]{article}
+\usepackage{../source/sticker}
+
+\begin{document}
+\newtcolorbox{sticker}
+{
+  fit,
+  width=2.75in,
+  height=4.25in,
+  blank,
+  %borderline={0.5pt}{0pt}{red!20!white},
+  nobeforeafter,
+  right skip=0.0in,
+  left skip=0.0in,
+  boxsep=0.23in,
+  fit fontsize macros
+}
+
+\renewcommand{\baselinestretch}{0.8} 
+
+\def\stickercontent{\begin{sticker}
+\stickertitle{Emergency Information}
+\large
+\begin{stickerlist}
+\item Landline phones: \\ \hspace{0.5em} Staff House \\ \hspace{0.5em} Cedars 1st floor \\ \hspace{0.5em} Pines 1st floor \\ \hspace{0.5em} Outside Computer Lab D\vspace{0.5cm}
+
+\item Nurse: \textbf{x4336} \vspace{0.5cm}
+
+\item Staff House: \textbf{x4332} \vspace{0.5cm}
+
+\item Call 911 by dialing \textbf{9-911} \vspace{0.5cm}
+    
+\textbf{If 911 called, then call:}
+\item Day SL Emergency \textbf{x4331}
+
+\item Night SL Emergency \textbf{x4335}
+
+\end{stickerlist}
+\vspace{-1em}
+\end{sticker}
+}
+
+
+%Generate all 8 stickers on the page
+
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+\verticalshiftfornextsticker
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+
+\end{document}

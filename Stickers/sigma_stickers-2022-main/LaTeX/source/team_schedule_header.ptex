@@ -1,0 +1,7 @@
+\documentclass{article}
+%\usepackage{../source/team_schedule}
+\usepackage{../source/team_schedule}
+\begin{document}
+
+\setlength{\parindent}{0pt}
+

@@ -1,0 +1,17 @@
+\documentclass[10pt,letterpaper, landscape]{article}
+\usepackage{../styles/sticker}
+
+\begin{document}
+\newtcolorbox{sticker}
+{
+  fit,
+  width=2.75in,
+  height=4.25in,
+  blank,
+  borderline={0.5pt}{0pt}{red!20!white},
+  nobeforeafter,
+  right skip=0.0in,
+  left skip=0.0in,
+  boxsep=0.23in,
+  fit fontsize macros
+}
