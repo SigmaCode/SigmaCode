@@ -1,0 +1,93 @@
+%\NeedsTeXFormat{LaTeX2e} %SPECIFY REQUIRED FORMAT (NONE CURRENTLY TO MY KNOWLEDGE)
+\ProvidesPackage{sticker}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%REQUIRED PACKAGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage[many]{tcolorbox}			%for tcolorbox capabilities
+\RequirePackage{lipsum}						%for testing
+\RequirePackage[document]{ragged2e}			%for non full justified
+\RequirePackage{amsmath}					%for math
+\RequirePackage{xhfill}						%for ruleafter
+\RequirePackage{xcolor}						%for colors
+\RequirePackage{enumitem}					%for changing indent on itemize
+\RequirePackage{lmodern}		%or any other vector / postscript font (for fitting)
+\RequirePackage{parskip} 					%SET NO INDENT
+\RequirePackage{tabularx}					%for tables
+%Page format
+\usepackage[letterpaper,%
+            left=0.0in,right=0.0in,top=0.0in,bottom=0.0in,%
+            footskip=.25in]{geometry}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Formatting
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\renewcommand{\baselinestretch}{0.5} 
+\renewcommand\labelitemi{--}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%CUSTOM COMMANDS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%Name header
+\newcommand\titlename[1]{\hspace*{\fill}{\Large \textbf{#1}}\hspace*{\fill}}
+
+%Time format
+\newcommand\mytimeformat[2]{#1{\tiny #2}}
+
+\newcommand\scheduleentry[3]{\mytimeformat{#1}{#2} & #3\\}
+
+\newcommand\scheduleentryspecial[3]{\color{red} \mytimeformat{#1}{#2} &#3\\}
+
+\newcommand\header[2]{\begin{tcolorbox}[oversize, fit to = {\textwidth + 0.09in} and 0.17in, colframe=white, colback={#1!30!white}, top=0.015in, bottom=0.025in, left=0.025in, right=0.025in, arc=0in, nobeforeafter, boxsep=0in, fit fontsize macros, valign=center]
+{\textsc{\large #2}} \end{tcolorbox}}
+
+\newcommand\stickertitle[1]{
+\begin{tcolorbox}[fit to = {\textwidth} and 0.20in, blank, nobeforeafter, boxsep=0in, fit fontsize macros, halign=center] 
+ { {\Large \textbf{#1} } }
+\end{tcolorbox}
+}
+
+\newcommand\horizontalshiftfornextsticker{\hspace{-0.048in}}
+
+\newcommand\verticalshiftfornextsticker{\par \vspace{-0.1in}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%CUSTOM ENVIRONMENTS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newenvironment{tournamenttable}
+{
+\color{blue!70!white}
+\setlength\tabcolsep{1pt} %forces header to go margin-to-margin
+\begin{tabular*}{\textwidth}{c @{\extracolsep{\fill}}  c  c  c  c  c }
+}
+{
+\end{tabular*}
+{\color{blue!70!white} \hrule height 0pt depth 1pt width \textwidth \relax} 
+\vspace{0.05in}
+}
+
+
+\newenvironment{scheduletable}
+{
+\setlength\tabcolsep{2pt}
+\renewcommand{\arraystretch}{1.5}
+\tabularx{\textwidth}{l X}
+}
+{
+\endtabularx
+\renewcommand{\arraystretch}{1}
+}
+
+\newenvironment{stickerlist}
+{
+\begin{itemize}[leftmargin=*]
+\setlength\itemsep{0.15em}
+}
+{
+\end{itemize}
+}
+

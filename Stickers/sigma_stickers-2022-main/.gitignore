@@ -1,0 +1,11 @@
+.DS_Store
+.python-version
+Python_old/
+Sheets/
+client_secret_old.json
+*.pyc
+LaTeX/python_output_old/
+LaTeX/python_output_18/
+LaTeX/python_output/
+LaTeX/custom_stickers_18/
+*.pdf

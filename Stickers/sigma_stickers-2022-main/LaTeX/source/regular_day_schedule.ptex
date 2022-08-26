@@ -1,0 +1,10 @@
+
+
+\begin{sticker}
+\stickertitle{Regular Day Schedule}
+\begin{scheduletable}
+\scheduleentry{9:00}{AM}{$\alpha$ breakfast dining hall duty}
+\scheduleentry{9:00}{AM}{$\beta$ breakfast dining hall duty}
+\scheduleentry{7:00}{PM}{Opening}
+\end{scheduletable}
+\end{sticker}
