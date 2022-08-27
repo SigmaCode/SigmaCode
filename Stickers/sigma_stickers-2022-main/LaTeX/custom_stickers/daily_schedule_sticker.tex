@@ -1,0 +1,65 @@
+\documentclass[10pt,letterpaper, landscape]{article}
+\usepackage{../source/sticker}
+
+\begin{document}
+\newtcolorbox{sticker}
+{
+  fit,
+  width=2.75in,
+  height=4.25in,
+  blank,
+  %borderline={0.5pt}{0pt}{red!20!white},
+  nobeforeafter,
+  right skip=0.0in,
+  left skip=0.0in,
+  boxsep=0.23in,
+  fit fontsize macros
+}
+
+\renewcommand{\baselinestretch}{0.8} 
+
+\def\stickercontent{\begin{sticker}
+\stickertitle{Daily Schedule}
+\large
+\begin{scheduletable}
+\scheduleentry{7:30}{AM}{Campers rise and shine}
+\scheduleentry{8:10}{AM}{Morning exercise}
+\scheduleentry{8:20}{AM}{Breakfast}
+\scheduleentry{9:00}{AM}{Lecture}
+\scheduleentry{10:00}{AM}{Semilab I}
+\scheduleentry{11:30}{AM}{Break (swimming, high-ropes)}
+\scheduleentry{1:00}{PM}{Lunch (Tuesday - on lake)}
+\scheduleentry{2:00}{PM}{Semilab II}
+\scheduleentry{3:30}{PM}{Snack (at tournament location)}
+\scheduleentry{3:45}{PM}{Tournament}
+\scheduleentry{4:45}{PM}{Sports, Art, Music}
+\scheduleentry{6:00}{PM}{Dinner (Thursday - on lake)}
+\scheduleentry{6:45}{PM}{Workshops}
+\scheduleentry{8:00}{PM}{Evening clubs (Thursday: Talent Show)}
+\scheduleentry{9:30}{PM}{Team time.}
+\scheduleentry{10:30}{PM}{Lights Out!}
+\scheduleentry{11:00}{PM}{Staff Meeting}
+\end{scheduletable}
+\vspace{-1em}
+\end{sticker}
+}
+
+%Generate all 8 stickers on the page
+
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+\verticalshiftfornextsticker
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+\horizontalshiftfornextsticker
+\stickercontent
+
+\end{document}

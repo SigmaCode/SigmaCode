@@ -1,0 +1,40 @@
+%\NeedsTeXFormat{LaTeX2e} %SPECIFY REQUIRED FORMAT (NONE CURRENTLY TO MY KNOWLEDGE)
+%\ProvidesPackage{/Users/danyalukin/Desktop/team_schedule}
+\ProvidesPackage{/Users/jacob/Sigma/2018/Stickers/LaTeX/source/team_schedule}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%REQUIRED PACKAGES
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\RequirePackage{caption}					%for figures caption
+\RequirePackage{graphicx}					%for graphics
+%\RequirePackage{physics}
+\RequirePackage{amsmath}					%for math
+\RequirePackage{xhfill}						%for ruleafter
+\RequirePackage[explicit]{titlesec}					%for customized section styles
+\RequirePackage{xcolor}						%for colors
+\RequirePackage{hyperref}					%for hyperlinks
+\RequirePackage{enumitem}					%for changing indent on itemize
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%CUSTOM COMMANDS
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%titletext
+\newcommand\titletext[1]{\begin{center}\textsc{\Huge\color{red!00!black} #1}\end{center}}
+
+%day header
+\newcommand\dayheader[1]{{\par \vspace{0.25in} \normalfont\Large\scshape\color{red}#1} \ \xrfill[0.5ex]{1pt}[red] } %Defines format of day's header
+
+\newcommand\titlename[1]{\hspace*{\fill}{\Large \textbf{#1}}\hspace*{\fill}}
+
+
+
+%event
+\newcommand\event[2]{\begin{tabular}{@{}p{0.8in} p{5in}@{}} 
+#1 & #2 \end{tabular}}
+
+\usepackage[letterpaper,%
+            left=1in,right=1in,top=2in,bottom=0.5in,%
+            footskip=.25in]{geometry}
