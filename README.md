@@ -1,5 +1,5 @@
 # SigmaCode
-This repository contains the code for workshops and stickers at SigmaCamp. The code is written in Python, and primarily generates Latex documents to be printed and used around camp. Additionally, some of the code uses the Google Sheets API to read and write information online spreadsheets.
+This repository contains the code for workshops and stickers at SigmaCamp. The code is written in Python, and primarily generates LaTeX documents to be printed and used around camp. Additionally, the sticker code uses the Google Sheets API to write to and read from online spreadsheets.
 
 This code serves two main functions:
 - Generate stickers for SigmaStaff using information stored in the Master spreadsheet
