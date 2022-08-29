@@ -10,7 +10,7 @@ import latexSetup
 #TODO: read this from the spreadsheet using Google API
 wshopdata = pd.read_csv('Friday.csv')
 #Reading individual columns using headers
-instructor = wshopdata["Instructors"]
+instructor1 = wshopdata["Instructors"]
 instructor2 = wshopdata["Instructor 2"]
 mentor = wshopdata["Mentor"]
 name = wshopdata["Name"]
@@ -19,48 +19,39 @@ location = wshopdata["Location"]
 
 #Sets file name and opens file to write Latex to
 fname = "StaffWshopListFri.tex"
-output = open(fname,"w")
+with open(fname,"w") as output:
 
-#Sets up the beginning of the Latex document, adds and writes the title
-latexSetup.stdSetup(output)
-latexSetup.title(output,"Sigma Workshops: Friday (Starts at 6:45)")
-output.write("\\begin{document}\r\n")
-output.write("\\maketitle\n")
+    #Sets up the beginning of the Latex document, adds and writes the title
+    latexSetup.stdSetup(output)
+    latexSetup.title(output,"Sigma Workshops: Friday (Starts at 6:45)")
+    output.write("\\begin{document}\r\n")
+    output.write("\\maketitle\n")
 
-loctitle = ""
-i = 0
-#TODO: reduce general file writing jank (this was code written during camp)
-#TODO: make this less janky, using a counter in a for loop like this is just messy
-#iterates through the workshops, additionally using a counter variable to index other columns (this is bad, see above)
-for wshop in name:
-    #If a cell isn't filled, Pandas stores it as NaN, and the Pandas isna() function is the best to check it
-    #If the workshop has a mentor, it is a JIC workshop, and therefore the title includes "JIC: " before the title
-    #The format of the title is "Number     Name (Location)"
-    if pd.isna(mentor[i]) != True:
-        output.write("\\section*{" + num[i] +"$\quad$" + "JIC: " + name[i] + " (" + location[i] + ")}\n")
-    #If the workshop isn't a JIC workshop, it just gets a title with the workshop number, name, and location
-    else: 
-        output.write("\\section*{" + num[i] +"$\quad$" + name[i] + " (" + location[i] + ")}\n")
-    #centers line for workshop instructors
-    output.write("\\begin{center}\n")
-    #NOTE: this is quite possibly the worst way to do this.
-    if pd.isna(mentor[i]) != True:
-        if pd.isna(instructor2[i]) != True:
-            #If the workshop has a mentor and two instructors, they are all written to the file, in the format "by instructor1 and instructor2, mentored by mentor"
-            output.write("\\textit{by "+ instructor[i] + " and " + instructor2[i] + ", mentored by " + mentor[i] + "}\n")
-        else:
-            #If the workshop has a mentor and one instructor, they are all written to the file, in the format "by instructor, mentored by mentor"
-            output.write("\\textit{by "+ instructor[i] + ", mentored by " + mentor[i] + "}\n")
-    elif pd.isna(instructor2[i]) != True:
-        #If the workshop has two instructors, they are both written to the file, in the format "by instructor1 and instructor2"
-        output.write("\\textit{by "+ instructor[i] + " and " + instructor2[i] + "}\n")
-    else:
-        #If the workshop has one instructors, they are written to the file, in the format "by instructor"
-        output.write("\\textit{by "+ instructor[i] + "}\n")
-    output.write("\\end{center}\r\n")
-    i += 1 #increases counter for indexing through columns
+    for i, wshop in enumerate(name):
+        # only jic workshops have mentors
+        is_jic = pd.notna(mentor[i])
 
-#closes document and parses the Latex into a PDF (only works from command line)
-output.write("\\end{document}\n")
-output.close()
+        # add "JIC: " to jic workshop names
+        name_ = name[i]
+        if is_jic:
+            name_ = "JIC: " + name_
+
+        title = num[i] + "$\\quad$" + name_ + " (" + location[i] + ")"
+        output.write("\\section*{" + title + "}\n")
+
+        #centers line for workshop instructors
+        output.write("\\begin{center}\n")
+
+        instructors = ""
+        instructors += instructor1[i]
+        if pd.notna(instructor2[i]):
+            instructors += " and " + instructor2[i]
+        if is_jic:
+            instructors += ", mentored by " + mentor[i]
+        output.write("\\textit{by " + instructors + "}\n")
+
+        output.write("\\end{center}\r\n")
+
+    output.write("\\end{document}\n")
+
 os.system("pdflatex " + fname)
