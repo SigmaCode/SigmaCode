@@ -31,9 +31,6 @@ with open(fname, "w") as output:
     latexSetup.stdSetup(output)
     latexSetup.title(output,"Sigma Workshops: Friday (Starts at 6:45)")
 
-    output.write("\\begin{document}\r\n")
-    output.write("\\maketitle\n")
-
     for i, wshop in enumerate(name):
         # only jic workshops have mentors
         is_jic = pd.notna(mentor[i])
