@@ -6,3 +6,7 @@ This code serves two main functions:
 - Assign campers to workshops based on their preferences and generate documents with information on workshops
 
 Currently, work is being done to better automate these tasks and expand the degree of automation to save as much time as possible and reduce possible error.
+
+In order to make code as maintainable as possible, code is formatted as follows:
+- Use [docstrings](https://www.geeksforgeeks.org/python-docstrings/) whenever possible to make functions as understandable as possible
+- Name files in camelCase without abbreviations (workshop instead of wshop)
