@@ -10,3 +10,4 @@ Currently, work is being done to better automate these tasks and expand the degr
 In order to make code as maintainable as possible, code is formatted as follows:
 - Use [docstrings](https://www.geeksforgeeks.org/python-docstrings/) whenever possible to make functions as understandable as possible
 - Name files in camelCase without abbreviations (workshop instead of wshop)
+- Apply [black](https://black.readthedocs.io/en/stable/index.html) to all files, configuration for [pre-commit](https://pre-commit.com/) is provided
