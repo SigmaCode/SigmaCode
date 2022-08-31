@@ -1,0 +1,3 @@
+# .git-blame-ignore-revs
+# Add code formatting with black and pre-commit, run it
+bae516fd4e10cbe1ff4c20a1025034cc6f1b4684
