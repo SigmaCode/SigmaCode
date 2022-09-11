@@ -80,3 +80,11 @@ def stdSetup(fl, set=None):
 def blSpace(fl,num): #adding a couple new lines to make tex code more readable
 	for i in range(num):
 		fl.write("\n")
+
+def includeFig(fl,fig): #format for including figures in latex documents
+	blSpace(fl,2)
+	fl.write("\\begin{figure}[ht]\n")
+	fl.write("\\centering\n")
+	fl.write("\\includegraphics[width=0.8\\textwidth]{" + fig + "}\n")
+	fl.write("\\end{figure}\n")
+	blSpace(fl,2)
