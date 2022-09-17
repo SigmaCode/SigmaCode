@@ -1,11 +1,10 @@
-import numpy as np, scipy as sp, itertools as it
 from pulp import *
 import pandas as pd
-import os, sys, csv, time
+import os, sys
 import latexSetup
 import workshopSlipGen #TODO: use this
 
-#
+#Originally written by Alex F, modified for new slips and API usage by Anna
 
 def wShop(fl,t,au,d,col,im = "None"): #New section in the document
 	fl.write("\\section*{" + t + "}\n")

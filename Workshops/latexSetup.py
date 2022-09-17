@@ -5,6 +5,7 @@ import os, sys, csv, time
 from scipy import optimize as spo
 import multiprocessing as mp
 
+#Originally written by Alex F, expanded functions and documentation by Anna
 
 def title(file, title, author="", date="", setup=True):
 	"""

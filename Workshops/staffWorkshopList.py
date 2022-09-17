@@ -2,12 +2,11 @@ import pandas as pd
 import os
 import latexSetup
 
+#This was originally written by Anna, and refactored for readability and better code practices by Alexey
+
 # This code uses a CSV of one day's workshop schedule and generates a 
 # LaTeX document that lists a workshop's number, name, location, 
 # instructor(s) and mentor(s).  
-
-# NOTE: this was written during camp! It works but it's fairly janky
-# TODO: none of this follows the naming conventions, this will get fixed soon!
 
 # Uses Pandas to read in the data from the downloaded daily schedule
 # TODO: read this from the spreadsheet using Google API
