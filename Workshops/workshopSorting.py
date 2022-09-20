@@ -5,7 +5,16 @@ import os
 import latexSetup
 import sheetsAPIfuncs as sheets
 
-#Originally written by Alex F, additional documentation and refactoring for readbility and API usage by Anna
+#Originally written by Alex F, additional documentation and API usage by Anna
+
+#Algorithm To Do List (feel free to add):
+#TODO: Seperate glassblowing
+#TODO: JIC system
+#TODO: Favor unlucky campers
+#TODO: Clean up LaTeX
+#TODO: Refactor some weird bits to make it make more sense
+#TODO: Make main stuff into a function
+#TODO: naming conventions? probably not worth it
 
 def sanitizePrefs(prs):
 	#Ideally, will get rid of garbage in the preference sheet if it makes it through
@@ -22,6 +31,7 @@ pref2score = {0:1,1:2,2:4,3:7,4:12}
 score2pref = {1:0,2:1,4:2,7:3,12:4}
 
 #Reads off camper preferences and workshop schedules. The header is the above list of running workshops.
+#TODO: try except
 prefid = "18FYysCjoPQyR9QmOeix30vmNnzZEUS4eCJDsWQs6nM8" #https://docs.google.com/spreadsheets/d/18FYysCjoPQyR9QmOeix30vmNnzZEUS4eCJDsWQs6nM8/edit#gid=0
 prefrange = "Test!A2:G121"
 prefs = sheets.get_values(prefid, prefrange)
@@ -34,11 +44,14 @@ wshopSched = pd.DataFrame(schedule[1:], columns=schedule[0])
 #wshopSched = pd.read_csv('WSched5.csv')
 
 # Get the lists of campers' names, and the list of workshop numbers (we don't care about workshop name))
-wshopscodes = sorted(list(wshopSched["Number"]))
+wshopscodes = list(wshopSched["Number"])
+for num in wshopscodes:
+	try:
+		num = int(num)
+	except:
+		continue
+wshopscodes = sorted(wshopscodes)
 campers = list(prefs["Camper Name"])
-
-print("campers")
-print(campers)
 
 ncampers = len(campers)
 nwshops = len(wshopscodes)
@@ -124,6 +137,22 @@ for i_w in range(nwshops):
 #Sum everything into the objective function        
 lpprob += np.sum(to_sum_objective)
 solved = lpprob.solve() #actually does the thing
+
+#Writes which preference they recieved to the preference spreadsheet
+nprefs = []
+for i_c in range(ncampers):
+	for i_w in range(nwshops):
+		if assign_variables[i_c][i_w].varValue > 0:
+			try:
+				towrite = str(score2pref[pref_table[i_c][i_w]]+1)
+			except:
+				towrite = "JIC or error"
+			nprefs.append([towrite])
+#add try except
+try:
+	sheets.update_values(prefid, "H3:H", nprefs)
+except:
+	print("Error writing to spreadsheet")
 
 #Some debugging booleans - plist1 will print out what preferences each camper got.
 plist1 = True

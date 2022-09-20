@@ -99,3 +99,42 @@ def batch_get_values(spreadsheet_id, range_names):
         print(f"An error occurred: {error}")
         return error
 
+def update_values(spreadsheet_id, range_name, values, value_input_option = "USER_ENTERED"
+                  ):
+    """
+    Creates the batch_update the user has access to.
+
+    Values needs to be an array containing arrays for the values of each row, with each value in that array being the values to write in the columns.
+        """
+    creds = None
+    # The file token.json stores the user's access and refresh tokens, and is
+    # created automatically when the authorization flow completes for the first
+    # time.
+    if os.path.exists('token.json'):
+        creds = Credentials.from_authorized_user_file('token.json', SCOPES)
+    # If there are no (valid) credentials available, let the user log in.
+    if not creds or not creds.valid:
+        if creds and creds.expired and creds.refresh_token:
+            creds.refresh(Request())
+        else:
+            flow = InstalledAppFlow.from_client_secrets_file(
+                'credentials.json', SCOPES)
+            creds = flow.run_local_server(port=0)
+        # Save the credentials for the next run
+        with open('token.json', 'w') as token:
+            token.write(creds.to_json())
+    # pylint: disable=maybe-no-member
+    try:
+        service = build('sheets', 'v4', credentials=creds)
+        body = {
+            'values': values
+        }
+        result = service.spreadsheets().values().update(
+            spreadsheetId=spreadsheet_id, range=range_name,
+            valueInputOption=value_input_option, body=body).execute()
+        print(f"{result.get('updatedCells')} cells updated.")
+        return result
+    except HttpError as error:
+        print(f"An error occurred: {error}")
+        return error
+
